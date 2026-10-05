@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Staff QR Hub</title>
+    <meta name="description" content="ศูนย์รวมลิงก์สำหรับพนักงาน">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#f5f7fa">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="page">
+
+        <header class="hero">
+            <!--
+                Logo placeholder
+                แทนที่ทั้งบล็อกนี้ด้วยโลโก้จริงได้เลย เช่น
+                <div class="hero__logo"><img src="assets/images/logo.svg" alt="โลโก้บริษัท"></div>
+                ขนาดกล่องถูกกำหนดไว้ใน style.css แล้ว (.hero__logo)
+            -->
+            <div class="hero__logo" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                     stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                    <path d="M14 14h3v3h-3zM18 18h3v3h-3zM18 14h3M14 18v3"></path>
+                </svg>
+            </div>
+
+            <h1 class="hero__title">Staff QR Hub</h1>
+
+            <p class="hero__subtitle">
+                ศูนย์รวมลิงก์สำหรับพนักงาน<br>
+                <span class="hero__hint">เลือกบริการหรือระบบที่ต้องการ</span>
+            </p>
+        </header>
+
+        <main>
+            <h2 class="sr-only">รายการเมนู</h2>
+
+            <!-- Card ทั้งหมดถูก render ด้วย assets/js/app.js จากข้อมูลใน assets/js/links.js -->
+            <ul class="card-grid" id="linkGrid" aria-label="เมนูลิงก์สำหรับพนักงาน"></ul>
+
+            <p class="grid-fallback" id="gridFallback" hidden>
+                ยังไม่มีเมนูที่ตั้งค่าไว้ กรุณาเพิ่มข้อมูลในไฟล์ assets/js/links.js
+            </p>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__name">Staff QR Hub</p>
+            <p class="footer__note">Internal Use Only</p>
+        </footer>
+
+    </div>
+
+    <script src="assets/js/links.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,504 @@
+/* ==========================================================================
+   Staff QR Hub — style.css
+   Modern / Minimal / Professional — Mobile First
+   --------------------------------------------------------------------------
+   เปลี่ยน Brand Color ได้ที่ :root ด้านล่างจุดเดียว
+   ========================================================================== */
+
+/* --- Color system & tokens ----------------------------------------------- */
+:root {
+    /* Brand */
+    --primary: #1f5fd0;
+    --primary-dark: #17499f;
+    --primary-soft: #eef3fd;
+    --primary-ring: rgba(31, 95, 208, 0.22);
+
+    /* Surfaces */
+    --background: #f4f6fa;
+    --surface: #ffffff;
+    --surface-pressed: #f7f9fc;
+
+    /* Text */
+    --text-primary: #1a2334;
+    --text-secondary: #6a7585;
+    --text-tertiary: #98a2b1;
+
+    /* Lines */
+    --border: #e5e9f0;
+    --border-hover: #c9d8f2;
+
+    /* Elevation — อ่อนมากโดยตั้งใจ */
+    --shadow-rest: 0 1px 2px rgba(18, 29, 48, 0.04),
+                   0 1px 6px rgba(18, 29, 48, 0.04);
+    --shadow-hover: 0 4px 10px rgba(18, 29, 48, 0.07),
+                    0 10px 24px rgba(18, 29, 48, 0.07);
+
+    /* Shape */
+    --radius-card: 16px;
+    --radius-icon: 11px;
+    --radius-logo: 14px;
+
+    /* Layout */
+    --content-max: 1060px;
+    --gutter: 16px;
+
+    /* Motion */
+    --ease: cubic-bezier(0.22, 0.68, 0.3, 1);
+    --speed: 180ms;
+}
+
+/* --- Reset ---------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: "Prompt", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Decoration แบบ abstract บางมาก ไม่ใช้รูปภาพ ไม่รบกวน Content */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 320px;
+    background: radial-gradient(760px 300px at 50% -130px,
+                rgba(31, 95, 208, 0.065), rgba(31, 95, 208, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Layout shell --------------------------------------------------------- */
+.page {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 26px var(--gutter) 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* --- Header (กระชับ ไม่กินพื้นที่ครึ่งจอ) -------------------------------- */
+.hero {
+    text-align: center;
+    padding-bottom: 22px;
+}
+
+.hero__logo {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-logo);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-rest);
+    color: var(--primary);
+    overflow: hidden;
+}
+
+/* รองรับทั้ง SVG placeholder และไฟล์โลโก้จริงที่จะใส่ภายหลัง */
+.hero__logo svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.hero__logo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.hero__title {
+    font-size: 1.375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+
+.hero__subtitle {
+    margin-top: 5px;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.hero__hint {
+    color: var(--text-tertiary);
+}
+
+/* --- Card grid ------------------------------------------------------------ */
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.card-item {
+    display: flex;
+}
+
+.grid-fallback {
+    text-align: center;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    padding: 28px 10px;
+}
+
+/* --- Card ----------------------------------------------------------------- */
+.card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    min-height: 72px;
+    padding: 15px 16px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-rest);
+    color: inherit;
+    text-decoration: none;
+    transition: transform var(--speed) var(--ease),
+                box-shadow var(--speed) var(--ease),
+                border-color var(--speed) var(--ease),
+                background-color var(--speed) var(--ease);
+}
+
+.card__icon {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-icon);
+    background-color: var(--primary-soft);
+    color: var(--primary);
+    transition: background-color var(--speed) var(--ease);
+}
+
+.card__icon svg {
+    width: 19px;
+    height: 19px;
+    display: block;
+}
+
+.card__body {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: block;
+}
+
+.card__title {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--text-primary);
+    overflow-wrap: anywhere;
+    transition: color var(--speed) var(--ease);
+}
+
+.card__desc {
+    /* -webkit-box + line-clamp กันคำอธิบายยาวจนดัน Card สูงผิดรูป */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 1px;
+    font-size: 0.8125rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    overflow-wrap: anywhere;
+}
+
+.card__arrow {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    color: var(--text-tertiary);
+    transition: transform var(--speed) var(--ease),
+                color var(--speed) var(--ease);
+}
+
+.card__arrow svg {
+    width: 17px;
+    height: 17px;
+    display: block;
+}
+
+/* --- States --------------------------------------------------------------- */
+
+/* Keyboard focus — ต้องเห็นชัด */
+.card:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-rest), 0 0 0 4px var(--primary-ring);
+}
+
+/* Touch active */
+.card:active {
+    transform: scale(0.99);
+    background-color: var(--surface-pressed);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-rest);
+}
+
+/* Hover — เฉพาะอุปกรณ์ที่มีเมาส์
+   ใช้ transform อย่างเดียวในการขยับ จึงไม่ทำให้ layout กระโดด */
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .card:hover .card__title {
+        color: var(--primary-dark);
+    }
+
+    .card:hover .card__arrow {
+        transform: translateX(3px);
+        color: var(--primary);
+    }
+}
+
+/* --- Footer --------------------------------------------------------------- */
+.footer {
+    margin-top: auto;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.footer__name {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+.footer__note {
+    margin-top: 1px;
+    font-size: 0.6875rem;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+
+/* --- Tablet: 2 cards / row ------------------------------------------------ */
+@media (min-width: 768px) {
+    :root {
+        --gutter: 28px;
+    }
+
+    .page {
+        padding-top: 44px;
+        padding-bottom: 32px;
+    }
+
+    .hero {
+        padding-bottom: 30px;
+    }
+
+    .hero__logo {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 14px;
+    }
+
+    .hero__logo svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .hero__title {
+        font-size: 1.625rem;
+    }
+
+    .hero__subtitle {
+        margin-top: 7px;
+        font-size: 0.9375rem;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .card {
+        min-height: 80px;
+        padding: 16px 18px;
+    }
+}
+
+/* --- Desktop: 3 cards / row ----------------------------------------------- */
+@media (min-width: 1024px) {
+    :root {
+        --gutter: 32px;
+    }
+
+    .page {
+        padding-top: 56px;
+        padding-bottom: 40px;
+    }
+
+    .hero {
+        padding-bottom: 34px;
+    }
+
+    .hero__title {
+        font-size: 1.75rem;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .card {
+        /* height:100% ทำให้ Card ในแถวเดียวกันสูงเท่ากันเสมอ */
+        height: 100%;
+        min-height: 84px;
+        padding: 17px 18px;
+    }
+
+    .card__icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card__icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .card__title {
+        font-size: 1rem;
+    }
+}
+
+/* --- Small phones (<= 359px) ---------------------------------------------- */
+@media (max-width: 359px) {
+    .page {
+        padding-top: 22px;
+    }
+
+    .card {
+        gap: 11px;
+        padding: 14px;
+    }
+
+    .card__icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .card__icon svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* --- Landscape บนมือถือ: บีบ Header ลงอีก -------------------------------- */
+@media (max-height: 480px) and (max-width: 767px) {
+    .page {
+        padding-top: 18px;
+    }
+
+    .hero {
+        padding-bottom: 16px;
+    }
+
+    .hero__logo {
+        margin-bottom: 8px;
+    }
+}
+
+/* --- Reduced motion ------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+
+    .card:hover,
+    .card:active {
+        transform: none;
+    }
+}
+
+/* --- Print ---------------------------------------------------------------- */
+@media print {
+    body {
+        background: #fff;
+    }
+
+    body::before {
+        display: none;
+    }
+
+    .card {
+        box-shadow: none;
+    }
+}
