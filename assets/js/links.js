@@ -40,7 +40,7 @@ const staffLinks = [
         title: "Premium Care",
         description: "LINE Official Account Premium Care",
         type: "line",
-        logo: "assets/images/logos/Premiumcare - Logo 2.jpg",
+        logo: "assets/images/logos/PremiumCar - Logo 4.jpg",
         url: "https://lin.ee/neS1OQo"
     },
     {
