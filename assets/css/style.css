@@ -1,6 +1,6 @@
 /* ==========================================================================
    Staff QR Hub — style.css
-   Modern / Minimal / Professional — Mobile First
+   Premium / Corporate / Modern / Minimal — Mobile First
    --------------------------------------------------------------------------
    เปลี่ยน Brand Color ได้ที่ :root ด้านล่างจุดเดียว
    ========================================================================== */
@@ -8,35 +8,44 @@
 /* --- Color system & tokens ----------------------------------------------- */
 :root {
     /* Brand */
-    --primary: #1f5fd0;
-    --primary-dark: #17499f;
-    --primary-soft: #eef3fd;
-    --primary-ring: rgba(31, 95, 208, 0.22);
+    --primary: #1f4fa3;
+    --primary-dark: #163a7c;
+    --primary-soft: #eaf1fb;
+    --primary-ring: rgba(31, 79, 163, 0.22);
+
+    /* Accent (ฟ้าอ่อนจากโลโก้) ใช้เฉพาะงาน decoration */
+    --accent: #36a9e1;
+    --accent-soft: #e8f5fd;
+
+    /* LINE */
+    --line-green: #1a8f4a;
+    --line-soft: #e9f6ee;
 
     /* Surfaces */
-    --background: #f4f6fa;
+    --background: #f3f6fb;
     --surface: #ffffff;
-    --surface-pressed: #f7f9fc;
+    --surface-muted: #f7f9fc;
+    --surface-pressed: #f5f8fc;
 
     /* Text */
-    --text-primary: #1a2334;
-    --text-secondary: #6a7585;
-    --text-tertiary: #98a2b1;
+    --text-primary: #16213a;
+    --text-secondary: #68758a;
+    --text-tertiary: #9aa5b6;
 
     /* Lines */
-    --border: #e5e9f0;
-    --border-hover: #c9d8f2;
+    --border: #e4e9f2;
+    --border-hover: #c2d5f0;
 
     /* Elevation — อ่อนมากโดยตั้งใจ */
-    --shadow-rest: 0 1px 2px rgba(18, 29, 48, 0.04),
-                   0 1px 6px rgba(18, 29, 48, 0.04);
-    --shadow-hover: 0 4px 10px rgba(18, 29, 48, 0.07),
-                    0 10px 24px rgba(18, 29, 48, 0.07);
+    --shadow-rest: 0 1px 2px rgba(16, 29, 56, 0.04),
+                   0 2px 8px rgba(16, 29, 56, 0.045);
+    --shadow-hover: 0 4px 10px rgba(16, 29, 56, 0.07),
+                    0 12px 26px rgba(16, 29, 56, 0.08);
 
     /* Shape */
-    --radius-card: 16px;
-    --radius-icon: 11px;
-    --radius-logo: 14px;
+    --radius-card: 18px;
+    --radius-logo: 12px;
+    --radius-pill: 999px;
 
     /* Layout */
     --content-max: 1060px;
@@ -74,18 +83,37 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Decoration แบบ abstract บางมาก ไม่ใช้รูปภาพ ไม่รบกวน Content */
+/*
+   Ambient background — สร้างด้วย CSS ล้วน ไม่ใช้ไฟล์รูป
+   เป็นแสงนวลสองจุดที่ด้านบน ความเข้มต่ำมาก จึงไม่แย่ง Card
+*/
 body::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 320px;
-    background: radial-gradient(760px 300px at 50% -130px,
-                rgba(31, 95, 208, 0.065), rgba(31, 95, 208, 0) 70%);
+    height: 420px;
+    background:
+        radial-gradient(620px 260px at 50% -90px, rgba(31, 79, 163, 0.10), rgba(31, 79, 163, 0) 70%),
+        radial-gradient(420px 220px at 12% 40px, rgba(54, 169, 225, 0.10), rgba(54, 169, 225, 0) 72%),
+        radial-gradient(460px 240px at 88% 10px, rgba(54, 169, 225, 0.08), rgba(54, 169, 225, 0) 72%);
     pointer-events: none;
     z-index: 0;
+}
+
+/* เส้นคั่นบาง ๆ ใต้โซน Header ช่วยแยกชั้นให้หน้าดูมีโครงสร้าง */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 2;
 }
 
 h1, h2, h3, p, ul {
@@ -95,6 +123,10 @@ h1, h2, h3, p, ul {
 
 ul {
     list-style: none;
+}
+
+img {
+    max-width: 100%;
 }
 
 /* --- Layout shell --------------------------------------------------------- */
@@ -129,27 +161,15 @@ ul {
 }
 
 .hero__logo {
-    width: 44px;
-    height: 44px;
-    margin: 0 auto 12px;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius-logo);
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-rest);
-    color: var(--primary);
-    overflow: hidden;
 }
 
-/* รองรับทั้ง SVG placeholder และไฟล์โลโก้จริงที่จะใส่ภายหลัง */
-.hero__logo svg {
-    width: 22px;
-    height: 22px;
-    display: block;
-}
-
+/* object-fit: contain — โลโก้ไม่ถูกยืด ไม่ว่าสัดส่วนไฟล์จะเป็นแบบใด */
 .hero__logo img {
     width: 100%;
     height: 100%;
@@ -157,8 +177,22 @@ ul {
     object-fit: contain;
 }
 
+.hero__badge {
+    display: inline-block;
+    padding: 3px 11px;
+    border-radius: var(--radius-pill);
+    background-color: var(--primary-soft);
+    color: var(--primary);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.6;
+}
+
 .hero__title {
-    font-size: 1.375rem;
+    margin-top: 8px;
+    font-size: 1.4375rem;
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1.3;
@@ -166,7 +200,7 @@ ul {
 }
 
 .hero__subtitle {
-    margin-top: 5px;
+    margin-top: 4px;
     font-size: 0.875rem;
     font-weight: 300;
     line-height: 1.65;
@@ -203,8 +237,8 @@ ul {
     align-items: center;
     gap: 13px;
     width: 100%;
-    min-height: 72px;
-    padding: 15px 16px;
+    min-height: 76px;
+    padding: 14px 15px;
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-card);
@@ -217,33 +251,62 @@ ul {
                 background-color var(--speed) var(--ease);
 }
 
+/* --- Logo area ------------------------------------------------------------ */
 .card__icon {
     flex: 0 0 auto;
-    width: 38px;
-    height: 38px;
+    width: 54px;
+    height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius-icon);
+    border-radius: var(--radius-logo);
     background-color: var(--primary-soft);
     color: var(--primary);
-    transition: background-color var(--speed) var(--ease);
+    transition: background-color var(--speed) var(--ease),
+                border-color var(--speed) var(--ease);
 }
 
 .card__icon svg {
-    width: 19px;
-    height: 19px;
+    width: 21px;
+    height: 21px;
     display: block;
 }
 
+/*
+   กล่องโลโก้ — พื้นขาว + เส้นบาง
+   โลโก้แต่ละไฟล์สัดส่วนไม่เท่ากัน (จัตุรัส / แนวนอน)
+   object-fit: contain + padding ทำให้ทุกใบดูเป็นระเบียบและไม่ถูกยืด
+*/
+.card__icon--logo {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    padding: 5px;
+}
+
+.card__icon--logo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+/* --- Card text ------------------------------------------------------------ */
 .card__body {
     flex: 1 1 auto;
     min-width: 0;
     display: block;
 }
 
+/* แถวบน: ชื่อเมนู + Badge — Badge ชิดขวา ไม่ทับข้อความ */
+.card__row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
 .card__title {
-    display: block;
+    flex: 0 1 auto;
+    min-width: 0;
     font-size: 0.9375rem;
     font-weight: 500;
     line-height: 1.45;
@@ -260,13 +323,38 @@ ul {
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin-top: 1px;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-weight: 300;
     line-height: 1.5;
     color: var(--text-secondary);
     overflow-wrap: anywhere;
 }
 
+/* --- Badge: WEBSITE / LINE ------------------------------------------------ */
+/* วางอยู่ระหว่างข้อความกับ Arrow — ไม่เบียดข้อความเพราะ body ยืดหดได้ */
+.card__badge {
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding: 2px 7px;
+    border-radius: var(--radius-pill);
+    font-size: 0.5625rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.75;
+    white-space: nowrap;
+}
+
+.card__badge--website {
+    background-color: var(--primary-soft);
+    color: var(--primary);
+}
+
+.card__badge--line {
+    background-color: var(--line-soft);
+    color: var(--line-green);
+}
+
+/* --- Arrow ---------------------------------------------------------------- */
 .card__arrow {
     flex: 0 0 auto;
     display: flex;
@@ -313,7 +401,7 @@ ul {
     }
 
     .card:hover .card__title {
-        color: var(--primary-dark);
+        color: var(--primary);
     }
 
     .card:hover .card__arrow {
@@ -344,6 +432,48 @@ ul {
     color: var(--text-tertiary);
 }
 
+/* ==========================================================================
+   Entrance animation — CSS ล้วน ไม่ใช้ Library
+   ========================================================================== */
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero,
+.card-item,
+.footer {
+    animation: riseIn 420ms var(--ease) both;
+}
+
+.hero {
+    animation-delay: 0ms;
+}
+
+/* Stagger ทีละ 40ms */
+.card-item:nth-child(1)  { animation-delay:  80ms; }
+.card-item:nth-child(2)  { animation-delay: 120ms; }
+.card-item:nth-child(3)  { animation-delay: 160ms; }
+.card-item:nth-child(4)  { animation-delay: 200ms; }
+.card-item:nth-child(5)  { animation-delay: 240ms; }
+.card-item:nth-child(6)  { animation-delay: 280ms; }
+.card-item:nth-child(7)  { animation-delay: 320ms; }
+.card-item:nth-child(8)  { animation-delay: 360ms; }
+.card-item:nth-child(9)  { animation-delay: 400ms; }
+.card-item:nth-child(10) { animation-delay: 440ms; }
+.card-item:nth-child(11) { animation-delay: 480ms; }
+.card-item:nth-child(n+12) { animation-delay: 520ms; }
+
+.footer {
+    animation-delay: 560ms;
+}
+
 /* --- Tablet: 2 cards / row ------------------------------------------------ */
 @media (min-width: 768px) {
     :root {
@@ -360,14 +490,9 @@ ul {
     }
 
     .hero__logo {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 14px;
-    }
-
-    .hero__logo svg {
-        width: 24px;
-        height: 24px;
+        width: 64px;
+        height: 64px;
+        margin-bottom: 12px;
     }
 
     .hero__title {
@@ -375,7 +500,7 @@ ul {
     }
 
     .hero__subtitle {
-        margin-top: 7px;
+        margin-top: 6px;
         font-size: 0.9375rem;
     }
 
@@ -385,8 +510,12 @@ ul {
     }
 
     .card {
-        min-height: 80px;
-        padding: 16px 18px;
+        min-height: 84px;
+        padding: 15px 17px;
+    }
+
+    .card__desc {
+        font-size: 0.78125rem;
     }
 }
 
@@ -397,7 +526,7 @@ ul {
     }
 
     .page {
-        padding-top: 56px;
+        padding-top: 54px;
         padding-bottom: 40px;
     }
 
@@ -417,22 +546,36 @@ ul {
     .card {
         /* height:100% ทำให้ Card ในแถวเดียวกันสูงเท่ากันเสมอ */
         height: 100%;
-        min-height: 84px;
-        padding: 17px 18px;
+        min-height: 88px;
+        padding: 16px 16px;
+        gap: 12px;
     }
 
     .card__icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .card__icon svg {
-        width: 20px;
-        height: 20px;
+        width: 52px;
+        height: 46px;
     }
 
     .card__title {
-        font-size: 1rem;
+        font-size: 0.9375rem;
+    }
+}
+
+/* --- Desktop ช่วงแคบ (1024-1199px): บีบระยะให้ชื่อเมนูอยู่บรรทัดเดียว ----- */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .card {
+        padding: 15px 14px;
+        gap: 11px;
+    }
+
+    .card__icon {
+        width: 48px;
+        height: 42px;
+    }
+
+    .card__badge {
+        padding: 2px 6px;
+        letter-spacing: 0.02em;
     }
 }
 
@@ -443,18 +586,24 @@ ul {
     }
 
     .card {
-        gap: 11px;
-        padding: 14px;
+        gap: 10px;
+        padding: 12px;
     }
 
     .card__icon {
-        width: 36px;
-        height: 36px;
+        width: 46px;
+        height: 40px;
     }
 
-    .card__icon svg {
-        width: 18px;
-        height: 18px;
+    /* ย่อชื่อเมนูและ Badge เล็กน้อย เพื่อให้อยู่บรรทัดเดียวบนจอ 320px */
+    .card__title {
+        font-size: 0.90625rem;
+    }
+
+    .card__badge {
+        padding: 2px 6px;
+        font-size: 0.53125rem;
+        letter-spacing: 0.02em;
     }
 }
 
@@ -469,7 +618,9 @@ ul {
     }
 
     .hero__logo {
-        margin-bottom: 8px;
+        width: 48px;
+        height: 48px;
+        margin-bottom: 6px;
     }
 }
 
@@ -480,6 +631,16 @@ ul {
     *::after {
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    .hero,
+    .card-item,
+    .footer {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 
     .card:hover,
@@ -494,8 +655,15 @@ ul {
         background: #fff;
     }
 
-    body::before {
+    body::before,
+    body::after {
         display: none;
+    }
+
+    .hero,
+    .card-item,
+    .footer {
+        animation: none;
     }
 
     .card {

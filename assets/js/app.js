@@ -41,6 +41,12 @@
     var ARROW_ICON =
         '<svg ' + ICON_ATTRS + '><path d="M9 6l6 6-6 6"/></svg>';
 
+    /* --- Badge บอกประเภทปลายทาง ------------------------------------------ */
+    var BADGE_LABELS = {
+        website: "WEBSITE",
+        line: "LINE"
+    };
+
     function iconMarkup(name) {
         var paths = ICON_PATHS[name] || ICON_PATHS.link;
         return '<svg ' + ICON_ATTRS + '>' + paths + '</svg>';
@@ -87,17 +93,37 @@
         }
         link.setAttribute("aria-label", label);
 
-        // Icon
+        // Logo ถ้ามี, ถ้าไม่มีค่อย fallback เป็น Inline SVG icon
         var icon = el("span", "card__icon");
-        icon.innerHTML = iconMarkup(item.icon);
+        if (item.logo) {
+            icon.classList.add("card__icon--logo");
+            var logo = document.createElement("img");
+            logo.src = item.logo;
+            logo.alt = "";               // ตกแต่ง — ชื่อเมนูอยู่ข้าง ๆ แล้ว
+            logo.decoding = "async";
+            icon.appendChild(logo);
+        } else {
+            icon.innerHTML = iconMarkup(item.icon);
+        }
         link.appendChild(icon);
 
         // Title + description
         var body = el("span", "card__body");
 
+        var titleRow = el("span", "card__row");
+
         var title = el("span", "card__title");
         title.textContent = item.title || "";
-        body.appendChild(title);
+        titleRow.appendChild(title);
+
+        // Badge บอกประเภทปลายทาง (WEBSITE / LINE) อยู่ท้ายบรรทัดชื่อเมนู
+        if (item.type && BADGE_LABELS[item.type]) {
+            var badge = el("span", "card__badge card__badge--" + item.type);
+            badge.textContent = BADGE_LABELS[item.type];
+            titleRow.appendChild(badge);
+        }
+
+        body.appendChild(titleRow);
 
         if (item.description) {
             var desc = el("span", "card__desc");

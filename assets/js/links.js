@@ -7,12 +7,13 @@
      id          : ตัวเลขไม่ซ้ำกัน
      title       : ชื่อเมนูที่แสดงบน Card
      description : คำอธิบายสั้น ๆ 1 บรรทัด
-     icon        : ชื่อไอคอน (ดูรายชื่อที่ใช้ได้ด้านล่าง)
+     type        : "website" หรือ "line"  → ใช้แสดง Badge บน Card
+     logo        : path รูปโลโก้ (Relative Path)
      url         : ลิงก์ปลายทาง
 
-   ไอคอนที่ใช้ได้ (กำหนดไว้ใน assets/js/app.js):
-     link, document, form, calendar, people, chat,
-     folder, clock, chart, shield, phone, tool
+     icon        : (ทางเลือก) ชื่อไอคอน SVG ใช้เมื่อไม่มี logo
+                   link, document, form, calendar, people, chat,
+                   folder, clock, chart, shield, phone, tool
 
    เพิ่มหรือลดจำนวนรายการได้อิสระ (6, 8, 10, 12 ...) หน้าเว็บจะจัด Layout ให้เอง
    ========================================================================== */
@@ -20,44 +21,50 @@
 const staffLinks = [
     {
         id: 1,
-        title: "เมนูที่ 1",
-        description: "รายละเอียดเมนูที่ 1",
-        icon: "document",
-        url: "https://example.com"
+        title: "Premium Care",
+        description: "เว็บไซต์ Premium Care",
+        type: "website",
+        logo: "assets/images/logos/Premiumcare - Logo 1.png",
+        url: "https://www.premium-care.in.th/"
     },
     {
         id: 2,
-        title: "เมนูที่ 2",
-        description: "รายละเอียดเมนูที่ 2",
-        icon: "form",
-        url: "https://example.com"
+        title: "Premium Carcare",
+        description: "เว็บไซต์ Premium Carcare",
+        type: "website",
+        logo: "assets/images/logos/Premiumcare - Logo 2.jpg",
+        url: "https://www.premium-carcare.com/"
     },
     {
         id: 3,
-        title: "เมนูที่ 3",
-        description: "รายละเอียดเมนูที่ 3",
-        icon: "calendar",
-        url: "https://example.com"
+        title: "Premium Care",
+        description: "LINE Official Account Premium Care",
+        type: "line",
+        logo: "assets/images/logos/Premiumcare - Logo 2.jpg",
+        url: "https://lin.ee/neS1OQo"
     },
     {
         id: 4,
-        title: "เมนูที่ 4",
-        description: "รายละเอียดเมนูที่ 4",
-        icon: "people",
-        url: "https://example.com"
+        title: "PremiumCare Bike",
+        description: "LINE Official Account PremiumCare Bike",
+        type: "line",
+        logo: "assets/images/logos/PremiumCare - Bike 3.jpg",
+        url: "https://lin.ee/QUCZyag"
     },
     {
         id: 5,
-        title: "เมนูที่ 5",
-        description: "รายละเอียดเมนูที่ 5",
-        icon: "chart",
-        url: "https://example.com"
+        title: "Premium Carcare",
+        description: "LINE Official Account Premium Carcare",
+        type: "line",
+        logo: "assets/images/logos/PremiumCar - Logo 4.jpg",
+        url: "https://lin.ee/s6jyBWbn"
     },
     {
         id: 6,
-        title: "เมนูที่ 6",
-        description: "รายละเอียดเมนูที่ 6",
-        icon: "chat",
-        url: "https://example.com"
+        title: "HR Connect",
+        description: "LINE Official Account HR Connect",
+        type: "line",
+        logo: "assets/images/logos/Premiumcare - Logo 2.jpg",
+        url: "https://lin.ee/RHL9bJN"
     }
 ];
